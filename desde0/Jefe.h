@@ -5,10 +5,13 @@
 class Jefe
 {
 public:
-	Jefe();
+	Jefe(int grupo);
 	void asignarGrupo();
-private:
+	void ayudarBecario();
 
+
+private:
+	int grupo;
 };
 
 

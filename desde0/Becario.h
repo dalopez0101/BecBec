@@ -21,7 +21,7 @@ private:
     int nrol;
     string rol;
     string tarea;
-    int grupo=NULL;
+    int grupo;
 };
 
 #endif // BECARIO_H

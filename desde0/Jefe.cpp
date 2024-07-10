@@ -2,10 +2,14 @@
 
 
 
-Jefe::Jefe()
-{
+Jefe::Jefe(int grupo){
+	this->grupo = grupo;
 }
 
 inline void Jefe::asignarGrupo(){
-	Becario becario;
+}
+
+void Jefe::ayudarBecario()
+{
+	printf("jefe de grupo");
 }
