@@ -10,22 +10,12 @@ int main()
 	vector<Becario> becarios;
 
 
-	for (size_t i = 0; i < BECARIOS_CNT; i++){//defino cuantos becarios hay Y AUTOMATICAMENTE SU ROL
+	for (size_t i = 0; i <= BECARIOS_CNT; i++){
 		becarios.push_back(Becario());
 
-
-		//asignar grupos, mas tarde la mando a clase de jefe
-		if (becarios[i-1].getGrupo()<JEFES_CNT && becarios[i - 1].getGrupo() >= 0)
-		{
-			becarios[i].setGrupo(becarios[i - 1].getGrupo() + 1);
-		}
-		else
-		{
-			becarios[i].setGrupo(1);
-		}
 	}
-	for (int i = 0; i < becarios.size(); i++) {//esta accion le corresponde a jefe
-		becarios[i].asignarTarea();
+	for (auto& becario:becarios){//esta accion le corresponde a jefe
+		becario.asignarTarea();
 	}
 
 	//printf("%s %s", becario.getRol().c_str(), becario.getTarea().c_str());
