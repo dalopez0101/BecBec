@@ -15,8 +15,8 @@ public:
     string getTarea();
 private:
     int nrol;
-    std::string rol;
-    std::string tarea;
+    string rol;
+    string tarea;
 };
 
 #endif // BECARIO_H

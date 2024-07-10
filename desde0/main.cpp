@@ -13,17 +13,19 @@ int main()
 		becarios.push_back(Becario());
 
 	}
-	for (auto& becario:becarios){
+	for (auto& becario:becarios){//esta accion le corresponde a jefe
 		becario.asignarTarea();
 	}
-	for (auto& becario:becarios) {
+
+	//printf("%s %s", becario.getRol().c_str(), becario.getTarea().c_str());
+	/*for (auto& becario : becarios) {
 		printf("%s %s", becario.getRol().c_str(), becario.getTarea().c_str());
 		
-	}
+	}*/
 	printf("\n");
 	for (size_t i = 0; i < becarios.size(); i++)
 	{
-		printf("%s %s", becarios[i].getRol().c_str(), becarios[i].getTarea().c_str());
+		printf("becario %i encargado de %s esta haciendo la tarea: %s\n", i, becarios[i].getRol().c_str(), becarios[i].getTarea().c_str());
 
 	}
 
