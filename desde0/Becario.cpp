@@ -1,19 +1,29 @@
 #include "Becario.h"
 
-Becario::Becario()
-{
+Becario::Becario(){
+	rol=roles[rand()%cntRoles];
+}
+
+void Becario::setGrupo(int n){
+	this->grupo = n;
 }
 
 void Becario::asignarTarea(){
-	this->tarea = tareas[nrol][rand()%(sizeof(tareas[nrol]) / sizeof(tareas[nrol][0]))].c_str();
+	int ntarea = rand() % cntTareas;
+	this->tarea = tareas[nrol][ntarea];
 }
 
 string Becario::getRol()
 {
-	return this->tarea;
+	return this->rol;
 }
 
 string Becario::getTarea()
 {
-	return string();
+	return this->tarea;
+}
+
+int Becario::getGrupo()
+{
+	return this->grupo;
 }

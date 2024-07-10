@@ -2,9 +2,7 @@
 #ifndef BECARIO_H
 #define BECARIO_H
 #include "Rol.h"
-
-
-
+#include <ctime>
 
 using namespace std;
 
@@ -12,13 +10,18 @@ using namespace std;
 class Becario {
 public:
     Becario();
-    void asignarTarea();
     string getRol();
     string getTarea();
+    int getGrupo();
+
+    void setGrupo(int n);
+    void asignarTarea();
+
 private:
-    int nrol = rand() % (sizeof(roles) / sizeof(roles[0]));
-    std::string rol = roles[nrol];
-    std::string tarea="sin tareas";
+    int nrol;
+    string rol;
+    string tarea;
+    int grupo;
 };
 
 #endif // BECARIO_H
