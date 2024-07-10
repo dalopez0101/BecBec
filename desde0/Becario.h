@@ -2,9 +2,7 @@
 #ifndef BECARIO_H
 #define BECARIO_H
 #include "Rol.h"
-
-
-
+#include <ctime>
 
 using namespace std;
 
@@ -16,9 +14,9 @@ public:
     string getRol();
     string getTarea();
 private:
-    int nrol = rand() % (sizeof(roles) / sizeof(roles[0]));
-    std::string rol = roles[nrol];
-    std::string tarea="sin tareas";
+    int nrol;
+    std::string rol;
+    std::string tarea;
 };
 
 #endif // BECARIO_H

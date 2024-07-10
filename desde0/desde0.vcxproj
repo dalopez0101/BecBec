@@ -77,9 +77,11 @@
   <ItemGroup>
     <ClCompile Include="Becario.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Rol.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Becario.h" />
+    <ClInclude Include="Category.h" />
     <ClInclude Include="Rol.h" />
   </ItemGroup>
   <ItemDefinitionGroup />
