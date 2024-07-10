@@ -1,8 +1,7 @@
 #include "Becario.h"
 
-Becario::Becario()
-	: nrol(rand() % cntRoles), rol(roles[nrol]), tarea("sin tareas") {
-	srand(static_cast<unsigned>(time(nullptr)));
+Becario::Becario(){
+	rol=roles[rand()%cntRoles];
 }
 
 void Becario::asignarTarea(){
