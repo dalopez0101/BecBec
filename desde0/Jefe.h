@@ -1,17 +1,18 @@
 #ifndef JEFE_H
 #define JEFE_H
 #include "Becario.h"
+#include <cstdlib>
 
 class Jefe
 {
 public:
-	Jefe(int grupo);
+	Jefe(int grupo, vector<Becario> becarios);
 	void asignarGrupo();
 	void ayudarBecario();
 
 
 private:
-	int grupo;
+	vector<Becario> becario;
 };
 
 

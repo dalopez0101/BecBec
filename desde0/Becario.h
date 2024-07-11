@@ -17,6 +17,7 @@ public:
     void setGrupo(int n);
     void asignarTarea();
 
+
 private:
     int nrol;
     string rol;

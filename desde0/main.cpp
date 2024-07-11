@@ -12,18 +12,29 @@ int main()
 	vector<Becario> becarios;
 	vector<Jefe> jefes;
 
-	for (size_t i = 0; i < JEFES_CNT; i++){
-		jefes.push_back(Jefe(i));
-	}
-	//la funcion de abajo se usara al momento de implementar semaforos al momento del semaforo de becario.realizatarea ser bloqueado manda a llamar proceso jefe.ayudartarea
+//la funcion de abajo se usara al momento de implementar semaforos al momento del semaforo de becario.realizatarea ser bloqueado manda a llamar proceso jefe.ayudartarea
 	//jefe[becarios[n].getGrupo()].ayudarBecario()
 
 	for (size_t i = 0; i <= BECARIOS_CNT; i++){
 		becarios.push_back(Becario());
 
 	}
+	
+	for (size_t i = 0; i < JEFES_CNT; i++){
+		jefes.push_back(Jefe(i,becarios));
+	}
+
 	for (size_t i = 0; i <= BECARIOS_CNT; i++){//esta accion le corresponde a jefe
 		becarios[i].asignarTarea();
+	}
+
+	for (size_t i = 0; i <= BECARIOS_CNT; i++){
+		if (becarios[i - 1].getGrupo() < JEFES_CNT && becarios[i - 1].getGrupo() > 0) {//revisar que el grupo este dentro del rango de grupos(definido por cantidad de jefes)
+			becarios[i].setGrupo(becarios[i - 1].getGrupo() + 1);
+		}
+		else{
+			becarios[i].setGrupo(1);
+		}
 	}
 
 	//printf("%s %s", becario.getRol().c_str(), becario.getTarea().c_str());

@@ -2,8 +2,8 @@
 
 
 
-Jefe::Jefe(int grupo){
-	this->grupo = grupo;
+Jefe::Jefe(int grupo, vector<Becario> becarios){
+	becario[grupo];
 }
 
 inline void Jefe::asignarGrupo(){
@@ -11,5 +11,6 @@ inline void Jefe::asignarGrupo(){
 
 void Jefe::ayudarBecario()
 {
-	printf("jefe de grupo");
+	printf("jefe de grupo auda a completar la tarea");
+	
 }
