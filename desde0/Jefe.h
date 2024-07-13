@@ -7,12 +7,10 @@ class Jefe
 {
 public:
 	Jefe(int grupo, vector<Becario> becarios);
-	void asignarGrupo();
-	void ayudarBecario();
+	void ayudarBecario(int nBecario, string tarea);
 
 
 private:
-	vector<Becario> becario;
 };
 
 

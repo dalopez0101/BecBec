@@ -13,7 +13,9 @@ int main()
 	vector<Jefe> jefes;
 
 //la funcion de abajo se usara al momento de implementar semaforos al momento del semaforo de becario.realizatarea ser bloqueado manda a llamar proceso jefe.ayudartarea
-	//jefe[becarios[n].getGrupo()].ayudarBecario()
+	//jefe[becarios[n].getGrupo()].ayudarBecario(n, becario[n].getTarea().clsr);
+
+
 
 	for (size_t i = 0; i <= BECARIOS_CNT; i++){
 		becarios.push_back(Becario());
