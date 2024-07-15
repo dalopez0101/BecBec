@@ -8,8 +8,8 @@ const int cntRoles = 4;
 const int cntTareas = 5;
 
 
-extern const std::string roles[cntRoles];  // Declare roles as extern
-extern const std::string tareas[cntRoles][cntTareas];  // Declare tareas as extern
+extern const std::string roles[cntRoles]; 
+extern const std::string tareas[cntRoles][cntTareas]; 
 
 
 #endif // ROL_H
