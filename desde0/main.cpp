@@ -4,8 +4,8 @@
 #include "Becario.h"
 #include "Jefe.h"
 
-#define BECARIOS_CNT 5
-#define JEFES_CNT 2
+#define BECARIOS_CNT 12
+#define JEFES_CNT 4
 
 int main()
 {
