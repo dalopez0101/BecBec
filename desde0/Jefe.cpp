@@ -4,8 +4,10 @@
 
 
 
-Jefe::Jefe(int grupo, vector<Becario> becarios){
+Jefe::Jefe(int grupo, std::vector<Becario> becarios){
 	becarios[grupo];
+	id = grupo;
+	this->becarios = becarios;
 }
 
 //funcion utilizada cuando becario pida ayuda

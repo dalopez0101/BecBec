@@ -12,6 +12,8 @@ public:
 	void asignarTarea(int idBecario, vector<Becario> becario);
 
 private:
+	int id;
+	vector<Becario> becarios;
 };
 
 
