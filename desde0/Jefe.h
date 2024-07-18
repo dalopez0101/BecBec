@@ -6,9 +6,10 @@
 class Jefe
 {
 public:
+	
 	Jefe(int grupo, vector<Becario> becarios);
 	void ayudarBecario(int nBecario, string tarea);
-
+	void asignarTarea(int idBecario, vector<Becario> becario);
 
 private:
 };

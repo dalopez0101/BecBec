@@ -8,7 +8,7 @@ void Becario::setGrupo(int n){
 	this->grupo = n;
 }
 
-void Becario::asignarTarea(){
+void Becario::nuevaTarea(){
 	int ntarea = rand() % cntTareas;
 	this->tarea = tareas[nrol][ntarea];
 }

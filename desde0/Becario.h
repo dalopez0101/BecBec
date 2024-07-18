@@ -15,7 +15,7 @@ public:
     int getGrupo();
 
     void setGrupo(int n);
-    void asignarTarea();
+    void nuevaTarea();
 
 
 private:

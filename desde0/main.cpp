@@ -17,17 +17,18 @@ int main()
 
 
 
-	for (size_t i = 0; i <= BECARIOS_CNT; i++){
+	for (size_t i = 0; i <= BECARIOS_CNT; i++){//inicializa al becario[i-becarios_cnt]
 		becarios.push_back(Becario());
 
 	}
 	
-	for (size_t i = 0; i < JEFES_CNT; i++){
+	for (size_t i = 0; i < JEFES_CNT; i++){//inicializa los procesos de jefe(i-jefes_cnt)
 		jefes.push_back(Jefe(i,becarios));
 	}
 
-	for (size_t i = 0; i <= BECARIOS_CNT; i++){//esta accion le corresponde a jefe
-		becarios[i].asignarTarea();
+	for (size_t i = 0; i <= BECARIOS_CNT; i++){//funcion para asignarle una tarea a cada becario
+		becarios[i].nuevaTarea();
+		jefes[i].asignarTarea(i, becarios);
 	}
 
 	for (size_t i = 0; i <= BECARIOS_CNT; i++){
