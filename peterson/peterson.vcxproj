@@ -88,6 +88,9 @@
   <ItemGroup>
     <Image Include="..\..\..\..\OneDrive\Imágenes\Capturas de pantalla\Captura de pantalla 2024-07-17 223011.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="petersonAlgo.h" />
+  </ItemGroup>
   <ItemDefinitionGroup />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
