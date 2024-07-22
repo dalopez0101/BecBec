@@ -41,10 +41,7 @@ int main()
 	}
 
 	//printf("%s %s", becario.getRol().c_str(), becario.getTarea().c_str());
-	/*for (auto& becario : becarios) {//sirve pero no como quiero
-		printf("%s %s", becario.getRol().c_str(), becario.getTarea().c_str());
-		
-	}*/
+	
 	printf("\n");
 	for (size_t i = 0; i < becarios.size(); i++)
 	{
