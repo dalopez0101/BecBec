@@ -49,7 +49,7 @@ void dekker(int process_id, Jefe& jefe, Becario& becario) {
         // Critical section
         cout << "Process " << process_id << " is in the critical section.\n";
 
-        if (process_id == 0) {
+        if (process_id == 0) {                                                      //aqui comienzan nuestros procesos
             jefe.asignarTarea(becario);
         }
         else {
@@ -68,6 +68,7 @@ void dekker(int process_id, Jefe& jefe, Becario& becario) {
 int main() {
     Jefe jefe;
     Becario becario;
+    srand(time(0));
 
     // Initialize Dekker's algorithm variables
     want_to_enter[0] = false;
