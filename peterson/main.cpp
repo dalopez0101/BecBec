@@ -1,95 +1,64 @@
 #include <iostream>
 #include <thread>
-#include <vector>
 #include <atomic>
-#include <chrono>
-#include <cstdlib> // Para rand y srand
-#include <ctime>   // Para time
 
 using namespace std;
 
-const int NUM_BECARIOS = 6;
-atomic<bool> flag[NUM_BECARIOS + 1]; // El índice 0 es para el jefe
-int turn;
-int task = 0;  //tarea actual
-atomic<int> current_task[NUM_BECARIOS]; // Tareas actuales para becario
+// Variables compartidas
+atomic<bool> flag[2];
+atomic<int> turn(0); // Variable para controlar el turno
+int buildingStatus = 1; // Estado inicial del edificio (ejemplo)
 
-vector<string> tareas = { "trabajo a", "trabajo b", "trabajo c", "trabajo d" };
-
-string almacen[20];
-
-string tareaRand(int n) {
-    string tarea_asignada = tareas[rand() % tareas.size()];
-    almacen[n] = tarea_asignada;
-    return tarea_asignada;
+// Inicializar las variables atómicas
+void initFlags() {
+    flag[0] = false;
+    flag[1] = false;
 }
 
-void jefe() {
-    int id = 0;
-    for (int i = 0; i < 10; ++i) {
-        
-        flag[id] = true;
-        turn = 1;
-        for (int j = 1; j <= NUM_BECARIOS; ++j) {
-            while (flag[j] && turn == 1) {
-                // Esperar
-            }
-        }
-
-        for (int j = 0; j < NUM_BECARIOS; ++j) {
-            task++;
-            current_task[j] = task;
-            cout << "Jefe: Asignando tarea " << tareaRand(j) << " al becario " << j + 1 << "." << endl;
-        }
-
-        // Salida de la sección crítica
-        flag[id] = false;
-
-        // Simular algún trabajo fuera de la sección crítica
-        this_thread::sleep_for(chrono::milliseconds(100));
-    }
+// Función que simula la tarea de revisar el edificio
+void reviewBuilding(int buildingNumber) {
+    cout << "Becario revisando el estado del edificio " << buildingNumber << endl;
+    // Simulación de revisión del estado del edificio
+    // Puede incluir lógica para cambiar el estado del edificio
+    this_thread::sleep_for(chrono::seconds(1)); // Simulación de tiempo de revisión
+    cout << "Revisión del edificio " << buildingNumber << " completada." << endl;
 }
 
-void becario(int id) {
-    for (int i = 0; i < 10; ++i) {
-        // Entrada a la sección crítica
-        flag[id] = true;
-        turn = 0;
-        while (flag[0] && turn == 0) {
-            // Esperar
-        }
+// Función que simula la asignación de tareas por el jefe
+void assignTask(int becarioId) {
+    // Tareas posibles
+    string tasks[] = { "reparar hardware", "revisión de redes", "revisión de equipo" };
+    int buildingNumber = becarioId + 1; // Número de edificio asignado (simplificado)
 
-        // Sección crítica
-        cout << "Becario " << id << ": Realizando tarea " << almacen[current_task[id - 1]] << " asignada por el jefe." << endl;
+    // Simulación de asignación de tarea aleatoria
+    int taskIndex = rand() % 3; // Se elige una tarea al azar
+    string task = tasks[taskIndex];
+    cout << "Jefe asigna tarea al becario " << becarioId << ": " << task << endl;
 
-        flag[id] = false;
-
-        this_thread::sleep_for(chrono::milliseconds(100));
+    // Entrar a la sección crítica (revisión del edificio) usando el algoritmo de Peterson
+    flag[becarioId] = true;
+    turn = 1 - becarioId;
+    while (flag[1 - becarioId] && turn == 1 - becarioId) {
+        // Esperar a que sea el turno del becario actual
     }
+
+    // Sección crítica
+    reviewBuilding(buildingNumber);
+
+    // Salir de la sección crítica
+    flag[becarioId] = false;
 }
 
 int main() {
-    // Inicialización
-    srand(time(0));
+    // Inicializar las flags
+    initFlags();
 
-    for (int i = 0; i <= NUM_BECARIOS; ++i) {
-        flag[i] = false;
-    }
-    turn = 0;
+    // Ejemplo con dos becarios (procesos)
+    thread becario1(assignTask, 0);
+    thread becario2(assignTask, 1);
 
-    // Creación de hilos
-    thread jefe_thread(jefe);
-    vector<thread> becario_threads;
-    for (int i = 1; i <= NUM_BECARIOS; ++i) {
-        becario_threads.push_back(thread(becario, i));
-    }
+    becario1.join();
+    becario2.join();
 
-    // Esperar a que hilos terminen
-    jefe_thread.join();
-    for (auto& t : becario_threads) {
-        t.join();
-    }
-
-    cout << "Todas las tareas han sido asignadas y realizadas." << endl;
     return 0;
 }
