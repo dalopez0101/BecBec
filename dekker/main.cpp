@@ -15,17 +15,31 @@ public:
         cout << "Becario realizando tarea: " << tarea << endl;
         this_thread::sleep_for(chrono::milliseconds(100));
     }
+    int getRol() {
+        return rol;
+    }
+private:
+    int rol=rand()%4;               //rol aleatorio para el becario
 };
 
 class Jefe {
 public:
     void asignarTarea(Becario& becario) {
-        vector<string> tareas = { "reparacion de hardware", "revision de software", "revision de redes" };
+        vector<string> tareas = { "programas", "revision del SO", "antivirus", "licencias", "ofimatica","revision de componentes", "reparacion","actualizaciones", "revision por accesos no autorizados" };//tareas que se podran asignar a los becarios
+        vector<vector<string>> chamba = {
+            {"programas","revision so","antivirus","licencias","ofimatica"},
+            {"monitores","fuente de poder","procesador"},
+            {"revision de redes","reinicio de servidores"},
+            {"nones","algo","prueba"}};
         string tarea;
-        tarea = tareas[rand() % tareas.size()];
-        for (int i = 0; i < tareas.size(); i++){
-            cout << "jefe asigna tarea: " << tarea << endl;
-            becario.realizarTarea(tarea);
+        string chambita;
+        int rol = becario.getRol();
+        
+        for (size_t i = 0; i < 5; i++)
+        {
+            chambita = chamba[rol][rand() % chamba[rol].size()];
+            cout << "jefe asigna tarea: " << chambita << endl << endl;
+            becario.realizarTarea(chambita);
         }
     }
 };
@@ -64,7 +78,7 @@ void dekker(int process_id, Jefe& jefe, Becario& becario) {
         this_thread::sleep_for(chrono::milliseconds(100));
     }
 }
-
+#define NPROCESS 10
 int main() {
     Jefe jefe;
     Becario becario;
@@ -74,14 +88,22 @@ int main() {
     want_to_enter[0] = false;
     want_to_enter[1] = false;
     turn = 0;
-
+    cout << "===becarios del departamento de informatica===" << endl << endl;
     // Create two threads for the two processes
     thread t1(dekker, 0, ref(jefe), ref(becario)); // Process 0 (Jefe)
-    thread t2(dekker, 1, ref(jefe), ref(becario)); // Process 1 (Becario)
+    vector<thread> t;
+    for (size_t i = 0; i < NPROCESS; i++)
+    {
+        t.push_back(thread(dekker, 1, ref(jefe), ref(becario)));
+    }
+    
 
     // Wait for both threads to finish
     t1.join();
-    t2.join();
+    for (size_t i = 0; i < NPROCESS; i++)
+    {
+        t[i].join();
+    }
 
     return 0;
 }
