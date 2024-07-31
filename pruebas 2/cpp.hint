@@ -1,0 +1,5 @@
+// Hint files help the Visual Studio IDE interpret Visual C++ identifiers
+// such as names of functions and macros.
+// For more information see https://go.microsoft.com/fwlink/?linkid=865984
+#define __attr_dealloc_free __attr_dealloc (__builtin_free, 1)
+#define __attr_dealloc_free
