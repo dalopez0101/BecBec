@@ -9,16 +9,18 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <string.h>
+#include <string>
 
+using namespace std;
 
-#define N_TAREAS 14
+#define SEM_JEFE 0
 #define N_BECARIOS 4
 #define N_GRUPOS 3
 #define N_EDIFICIOS 2
-#define TIEMPO_TAREA 1
+#define TMP_TAREA 1
 #define TIEMPO_ENTORPECEDOR 3
-#define SEM_JEFE 0
 #define SEM_ENTORPECEDOR 1
+#define SEM_EDIFICIO 0
 
 union senum {
     int val;
@@ -67,7 +69,9 @@ int main() {
     if (r == -1)
         perror("Error inicializando semáforo del entorpecedor.");
 
-    printf("Becarios disponibles: %i / Tareas a resolver: %i\n", N_BECARIOS, N_TAREAS);
+    //CREAR SEM DE BECARIO Y EDIFICI
+
+    printf("Becarios disponibles: %i\n", N_BECARIOS);
 
     // Arreglo para almacenar los IDs de grupo de los becarios
     int grupos[N_BECARIOS];
@@ -126,9 +130,9 @@ int main() {
                     r = semop(sem, &arriba, 1);
                     frecuenciaEntropecedor--;
                 }
-                sleep(TIEMPO_TAREA);
+                sleep(TMP_TAREA);
                 printf("El becario %i terminó la tarea %i\n", idBecario, c);
-                tiempoJornada = tiempoJornada - TIEMPO_TAREA;
+                tiempoJornada = tiempoJornada - TMP_TAREA;
                 
                 if (tiempoJornada < 0) {
                     printf("El becario %i abandona las tareas (ha terminado la jornada).\n\n", idBecario);
